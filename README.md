@@ -1,167 +1,89 @@
-# AI-Powered Banking Transaction Analytics Dashboard
-
-## Banking Analytics Using SQL, Power BI, DAX & Perplexity AI
+# AI-Powered Banking Transaction Analytics (SQL + Power BI)
 
 ## Problem Statement
 
-This project provides an interactive **Banking Transaction Analytics Dashboard** built using **SQL, Microsoft Power BI, DAX, and Perplexity AI**.
+This project helps a banking business analyze **customer accounts and transaction activity** from a single Power BI dashboard. The solution combines customer, account, and transaction data prepared in **SQL Server**, cleans inconsistent date formats, and uses **Power BI, DAX, and AI-assisted KPI/chart recommendations** to turn the data into useful banking insights.
 
-The dashboard helps analyze customer accounts, transaction activity, account balances, inactive accounts, customer demographics, and monthly banking trends. AI-assisted recommendations were used during the project for **KPI selection, chart selection, SQL support, and DAX recommendations**.
+The dashboard focuses on transaction type, monthly transaction value and balance trends, customer/account balances, inactive accounts, customer demographics, and account-type distribution. The source database intentionally contains data-quality issues such as mixed date formats, inconsistent text casing, missing values, unmatched account/customer IDs, negative values, and transaction outliers, making data preparation an important part of the project.
 
-The objective is to transform raw banking data into meaningful business insights and provide a clear view of customer behavior, account performance, and transaction patterns.
-<!--  -->
-## Steps Followed
+## Steps followed
 
-- **Step 1:** Created and prepared the banking dataset using **SQL and Perplexity AI**.
-- **Step 2:** Removed inconsistencies from date columns using **SQL and AI-assisted recommendations**.
-- **Step 3:** Combined data from **three tables using SQL** to create the required analytical dataset.
-- **Step 4:** Loaded the prepared data into **Power BI Desktop**.
-- **Step 5:** Used **Perplexity AI** for KPI, chart, and DAX recommendations.
-- **Step 6:** Performed additional **data cleaning** inside Power BI.
-- **Step 7:** Cleaned and transformed other date columns required for analysis.
-- **Step 8:** Created a visual to analyze the **number of transactions by transaction type**.
-- **Step 9:** Created a monthly analysis of **transactions by month**.
-- **Step 10:** Analyzed the **top transactions by customer name**.
-- **Step 11:** Created a visual for **total balance by account type**.
-- **Step 12:** Analyzed **inactive accounts by year and month**.
-- **Step 13:** Created customer demographic analysis using **gender**.
-- **Step 14:** Grouped customers into **age groups** for customer segmentation.
-- **Step 15:** Created and formatted a **Tree Map** to compare account counts by account type.
-- **Step 16:** Built and formatted the final Power BI dashboard.
+- **Step 1:** Created the `Power_BI2` database in SQL Server and created three source tables: `Customers`, `Accounts`, and `Transactions`.
+- **Step 2:** Added sample customer and account records containing realistic data-quality issues such as missing values, inconsistent capitalization, mixed date formats, unmatched customer IDs, zero balances, and negative balances.
+- **Step 3:** Generated **10,000 synthetic banking transactions** in SQL with Credit/Debit activity, mixed transaction-date formats, positive/negative amounts, outliers, missing descriptions, inconsistent currency casing, and unmatched Account IDs.
+- **Step 4:** Cleaned and standardized `OpenDate`, `DateOfBirth`, and `TransactionDate` using SQL `TRY_CONVERT`, `CASE`, and `FORMAT`.
+- **Step 5:** Combined Transactions, Accounts, and Customers using **LEFT JOINs** and created `CombinedBankingDataset` for analysis.
+- **Step 6:** Loaded the combined banking dataset into **Power BI Desktop**.
+- **Step 7:** Used **Perplexity/AI assistance** for KPI, chart, and DAX recommendations while developing the analytical dashboard.
+- **Step 8:** Created transaction analysis including **Count of Transaction by Transaction Type** and **Monthly Transaction Amount by Month**.
+- **Step 9:** Created customer/account analysis including **Total Balance by Name**, **Total Amount by Name**, and **Total Balance by AccountType**.
+- **Step 10:** Created **Inactive Accounts by Year and Month** to monitor account inactivity over time.
+- **Step 11:** Created demographic analysis using **Customer Count by Gender** and **Number of Customers by Age Group**.
+- **Step 12:** Created and formatted a **Treemap** for account count by account type and assembled the visuals into the final Power BI report.
 
-## Dashboard Visuals
+## Snapshots
 
-The Power BI report includes:
+### Dashboard – Monthly Balance, Customer Balance & Demographics
+<img width="1122" height="633" alt="AI-Powered Banking Transaction Analytics Dashboard 1" src="https://github.com/user-attachments/assets/d9b753d2-2800-428a-9cc7-c4090ebe04cb" />
 
-- **Inactive Accounts by Year and Month**
-- **Total Balance by Account Type**
-- **Total Amount by Name**
-- **Monthly Transaction Amount by Month**
-- **Count of Transactions by Transaction Type**
-- **Monthly Transaction Balance by Month**
-- **Total Balance by Name**
-- **Account Count by Account Type**
-- **Number of Customers by Age Group**
-- **Customer Count by Gender**
-
-## AI Integration
-
-A key part of this project was the use of **Perplexity AI as an analytics assistant** during development.
-
-AI was used to support:
-
-- SQL query recommendations
-- Data-cleaning approaches
-- KPI identification
-- Power BI chart recommendations
-- DAX recommendations
-- Analytical problem-solving
-
-The final analysis and dashboard were implemented using **SQL, Power BI, and DAX**, with AI used as a supporting tool to improve the development workflow.
-
-## Snapshot of Dashboard – Page 1
-
-<img width="1122" height="633" alt="AI-Powered Banking Transaction Analytics Dashboard Page 1" src="https://github.com/user-attachments/assets/d9b753d2-2800-428a-9cc7-c4090ebe04cb" />
-
-## Snapshot of Dashboard – Page 2
-
-<img width="1323" height="606" alt="AI-Powered Banking Transaction Analytics Dashboard Page 2" src="https://github.com/user-attachments/assets/643c32ad-a2f4-480d-8ca3-b8efb0c25800" />
+### Dashboard – Inactive Accounts, Transaction Amount & Transaction Type
+<img width="1323" height="606" alt="AI-Powered Banking Transaction Analytics Dashboard 2" src="https://github.com/user-attachments/assets/643c32ad-a2f4-480d-8ca3-b8efb0c25800" />
 
 # Insights
 
-The dashboard provides a consolidated view of banking transactions, account balances, account activity, and customer demographics.
+The project uses a SQL-generated dataset of **10,000 transactions** and combines it with customer and account information for Power BI analysis.
 
-### [1] Monthly Transaction Amount
+### [1] Transactions by Type
 
-The monthly transaction amount shows noticeable variation throughout the year.
+The dashboard compares transaction volume between **Credit** and **Debit** transactions. The generated SQL data alternates the transaction type, producing an approximately even split of **5K Credit and 5K Debit transactions (50% each)**.
 
-- **March** records the highest transaction amount at approximately **4.9M**.
-- January, April, and July are around **3.0M**.
-- **August** records the lowest transaction amount at approximately **0.9M**.
-- Transaction activity recovers toward the end of the year, reaching approximately **3.0M in December**.
+### [2] Monthly Transaction Amount
 
-### [2] Transaction Type
+The monthly transaction amount visual shows how transaction value changes throughout the year. The displayed dashboard ranges from approximately **0.9M to 4.9M**, with **March showing the highest displayed monthly amount at about 4.9M** and **August the lowest at about 0.9M**.
 
-The transaction distribution is evenly divided between the two transaction types:
+### [3] Monthly Transaction Balance
 
-- **Debit:** approximately 5K transactions (50%)
-- **Credit:** approximately 5K transactions (50%)
+The monthly balance visual highlights changes in balance across months. In the displayed report, monthly values are negative, ranging roughly from **-0.95M to -1.74M**, with the lowest displayed point occurring in **July (-1.74M)**.
 
-This indicates a nearly balanced distribution of debit and credit activity in the dataset.
+### [4] Total Balance by Account Type
 
-### [3] Account Type
+The dashboard compares aggregate balance between **Savings** and **Current** accounts. The displayed data shows Savings at approximately **1.48K**, while Current contains a substantial negative balance of approximately **-15,782.44K**, showing how an outlier/negative account balance can strongly affect aggregate results.
 
-The dashboard compares **Current** and **Savings** accounts.
+### [5] Customer / Transaction Value by Name
 
-The Tree Map shows:
-
-- **Current Accounts:** 200
-- **Savings Accounts:** 200
-
-This represents an equal distribution of the two account types in the analyzed account data.
-
-### [4] Customer Age Groups
-
-Customers are segmented into three age groups:
-
-- **26–35:** 100 customers
-- **36–50:** 100 customers
-- **51+:** 100 customers
-
-The analyzed customer population is evenly distributed across these age categories.
-
-### [5] Customer Gender
-
-The dashboard includes a donut chart showing customer distribution by gender, allowing demographic composition to be analyzed alongside banking activity.
+Customer-level visuals compare balance and transaction amount by customer name. The report makes unusually large positive or negative customer values easy to identify and investigate.
 
 ### [6] Inactive Accounts
 
-The **Inactive Accounts by Year and Month** visual tracks inactive accounts over time.
+The **Inactive Accounts by Year and Month** visual tracks accounts that meet the inactivity logic over time. The DAX recommendation defines inactivity using accounts whose latest transaction date is more than **90 days before today**.
 
-This helps identify periods where account inactivity increases or decreases and can support customer-retention analysis.
+### [7] Customer Gender Distribution
 
-### [7] Monthly Transaction Balance
+A donut chart displays the customer distribution by gender and also exposes blank/missing gender values, demonstrating the effect of incomplete customer data on reporting.
 
-The monthly transaction balance remains negative across the displayed months and fluctuates throughout the year.
+### [8] Customers by Age Group
 
-The visual helps identify months with comparatively stronger and weaker balance positions and makes monthly banking patterns easier to monitor.
+Customers are grouped into age brackets using Date of Birth. The recommended calculated logic uses the groups **≤25, 26–35, 36–50, and 51+**, making demographic comparison easier.
 
-### [8] Customer-Level Balance Analysis
+### [9] Accounts by Account Type
 
-The **Total Balance by Name** and **Total Amount by Name** visuals provide customer-level comparisons.
+A treemap compares the number of accounts by account type. In the displayed dashboard, **Current and Savings each show 200 records**, reflecting the dataset/model aggregation used in the report.
 
-These visuals help identify customers with:
+## Key DAX / Analytical Logic
 
-- Higher balances
-- Lower or negative balances
-- Significant transaction amounts
-- Unusual account-level patterns
+- **Monthly Transaction Amount:** `CALCULATE(SUM(CombinedBankingDataset[Amount]), ALLEXCEPT(CombinedBankingDataset, CombinedBankingDataset[TransactionDate].[Month]))`
+- **Total Balance:** `SUM(CombinedBankingDataset[Balance])`
+- **Customer Count by Gender:** `DISTINCTCOUNT(CombinedBankingDataset[CustomerID])`
+- **Customer Age:** `DATEDIFF(CombinedBankingDataset[DateOfBirth], TODAY(), YEAR)`
+- **Age Group:** `SWITCH(TRUE(), [Customer Age]<=25, "≤25", [Customer Age]<=35, "26-35", [Customer Age]<=50, "36-50", "51+")`
+- **Inactive Accounts:** Accounts whose maximum transaction date is earlier than `TODAY()-90`.
 
-## Key Skills Demonstrated
+## Tools & Technologies
 
-- **Microsoft Power BI**
-- **SQL**
-- **DAX**
-- **Power Query**
-- **Data Cleaning**
-- **Data Transformation**
-- **Data Visualization**
-- **Dashboard Development**
-- **Customer Segmentation**
-- **Banking Data Analysis**
-- **AI-Assisted Analytics**
-- **Perplexity AI**
+**SQL Server | SQL | Power BI | DAX | Data Cleaning | Data Visualization | Perplexity AI**
 
 ## Project Files
 
-- `DD.pbit` – Power BI project/template
-- `SQLQuery.sql` – SQL queries used for data preparation and transformation
-- `README.md` – Project documentation
-
-## Project Objective
-
-The project demonstrates how **SQL, Power BI, DAX, and AI-assisted analytics** can be combined to convert banking transaction data into an interactive analytical dashboard for understanding transaction trends, account performance, customer demographics, and account activity.
-
-## Author
-
-**Ishu Sharma**
+- `SQLQuery(1).sql` – Database creation, synthetic data generation, date cleaning, and table joins.
+- `AI-Powered Banking Transaction Analytics.pbit` – Power BI project/template.
+- KPI reference files – KPI descriptions, recommended visuals, and DAX/calculated-column examples.
